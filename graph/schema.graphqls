@@ -1,0 +1,30 @@
+type Query {
+    categories: [Category!]!
+}
+
+type User {
+    id: ID!
+    name: String!
+    password: String!
+}
+
+type Category {
+    id: ID!
+    name: String!
+}
+
+type Mutation {
+    createUser(input: CreateUserInput!): String!
+    login(input: UserInput!): String!
+}
+
+input CreateUserInput {
+    name: String!
+    password: String!
+    code: String!
+}
+
+input UserInput {
+    name: String!
+    password: String!
+}
