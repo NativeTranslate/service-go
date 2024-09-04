@@ -1,0 +1,11 @@
+go 1.23rc2
+
+use (
+	.
+	core/auth
+	core/data/invites
+	core/data/users
+	core/jwt
+	core/mysql
+	graph
+)

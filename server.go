@@ -2,6 +2,7 @@ package main
 
 import (
 	"auth"
+	"github.com/go-chi/chi/v5"
 	"graph"
 	"log"
 	database "mysql"
@@ -10,7 +11,6 @@ import (
 
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/go-chi/chi"
 )
 
 const defaultPort = "8080"

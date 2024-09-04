@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"errors"
 	"golang.org/x/crypto/bcrypt"
+	"invites"
 	"log"
 	database "mysql"
-	"nativetranslate-graphql/core/data/invites"
 )
 
 type User struct {
