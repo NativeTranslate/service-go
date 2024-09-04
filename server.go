@@ -2,26 +2,24 @@ package main
 
 import (
 	"auth"
+	"config"
+	"fmt"
+	"github.com/99designs/gqlgen/graphql/handler"
+	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/go-chi/chi/v5"
 	"graph"
 	"log"
 	database "mysql"
 	"net/http"
-	"os"
-
-	"github.com/99designs/gqlgen/graphql/handler"
-	"github.com/99designs/gqlgen/graphql/playground"
 )
 
-const defaultPort = "8080"
-
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = defaultPort
+	conf, err := config.LoadConfig("config.json")
+	if err != nil {
+		panic(err)
 	}
 
-	database.InitDB()
+	database.InitDB(conf)
 	defer database.CloseDB()
 
 	router := chi.NewRouter()
@@ -32,6 +30,7 @@ func main() {
 	router.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	router.Handle("/query", srv)
 
-	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
-	log.Fatal(http.ListenAndServe(":"+port, router))
+	port := conf.Server.Port
+	log.Printf("connect to http://localhost:%d/ for GraphQL playground", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), router))
 }

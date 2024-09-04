@@ -1,0 +1,13 @@
+{
+  "server": {
+    "port": 8080
+  },
+
+  "database": {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "nativetranslate",
+    "password": "nativ3tr4nsl4t3",
+    "database": "nativetranslate"
+  }
+}
