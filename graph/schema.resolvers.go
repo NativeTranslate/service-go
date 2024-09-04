@@ -6,6 +6,7 @@ package graph
 
 import (
 	"context"
+	"fmt"
 	"graph/model"
 	"invites"
 	"jwt"
@@ -49,14 +50,14 @@ func (r *mutationResolver) Login(ctx context.Context, input model.UserInput) (st
 	return token, nil
 }
 
-// Categories is the resolver for the categories field.
-func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, error) {
-	category := model.Category{
-		ID:   "1",
-		Name: "Test Category",
-	}
+// Self is the resolver for the self field.
+func (r *queryResolver) Self(ctx context.Context) (*model.User, error) {
+	panic(fmt.Errorf("not implemented: Self - self"))
+}
 
-	return []*model.Category{&category}, nil
+// Stats is the resolver for the stats field.
+func (r *queryResolver) Stats(ctx context.Context) (*model.Stats, error) {
+	panic(fmt.Errorf("not implemented: Stats - stats"))
 }
 
 // Mutation returns MutationResolver implementation.

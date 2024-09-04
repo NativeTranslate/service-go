@@ -1,16 +1,36 @@
 type Query {
-    categories: [Category!]!
+    self: User!
+    stats: Stats!
 }
 
+# User
 type User {
     id: ID!
     name: String!
     password: String!
 }
 
-type Category {
-    id: ID!
-    name: String!
+# Stats
+type Stats {
+    users: Int!
+    organizations: Int!
+    projects: Int!
+    translations: Int!
+    historical: HistoricalData!
+}
+
+type HistoricalData {
+    translations: GraphData!
+}
+
+# Graphs
+type GraphData {
+    datasets: [GraphDataset!]!
+}
+
+type GraphDataset {
+    date: Int!
+    value: Int!
 }
 
 type Mutation {
@@ -18,6 +38,7 @@ type Mutation {
     login(input: UserInput!): String!
 }
 
+# User
 input CreateUserInput {
     name: String!
     password: String!
