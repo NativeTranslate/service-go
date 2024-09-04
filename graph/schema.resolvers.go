@@ -10,6 +10,7 @@ import (
 	"graph/model"
 	"invites"
 	"jwt"
+	"stats"
 	"users"
 )
 
@@ -57,7 +58,12 @@ func (r *queryResolver) Self(ctx context.Context) (*model.User, error) {
 
 // Stats is the resolver for the stats field.
 func (r *queryResolver) Stats(ctx context.Context) (*model.Stats, error) {
-	panic(fmt.Errorf("not implemented: Stats - stats"))
+	return &model.Stats{
+		Users:         stats.GetTotalUsers(),
+		Organizations: stats.GetTotalOrganizations(),
+		Projects:      0,
+		Translations:  0,
+	}, nil
 }
 
 // Mutation returns MutationResolver implementation.

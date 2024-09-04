@@ -3,6 +3,7 @@ package database
 import (
 	"config"
 	"database/sql"
+	"errors"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
@@ -30,4 +31,23 @@ func InitDB(conf *config.Config) {
 
 func CloseDB() error {
 	return Db.Close()
+}
+
+func CountTableRows(table string) (int, error) {
+	statement, err := Db.Prepare("SELECT COUNT(*) FROM " + table)
+	if err != nil {
+		log.Fatal(err)
+	}
+	row := statement.QueryRow()
+
+	var count int
+	err = row.Scan(&count)
+	if err != nil {
+		if !errors.Is(err, sql.ErrNoRows) {
+			log.Print(err)
+		}
+		return 0, err
+	}
+
+	return count, nil
 }

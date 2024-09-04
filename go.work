@@ -9,4 +9,5 @@ use (
 	core/jwt
 	core/mysql
 	graph
+	core/data/stats
 )
