@@ -38,7 +38,7 @@ func (user *User) Create(inviteCode string) bool {
 
 // Authenticate checks if a user exists in the database
 func (user *User) Authenticate() bool {
-	statement, err := database.Db.Prepare("select Password from Users WHERE Username = ?")
+	statement, err := database.Db.Prepare("select password from users WHERE username = ?")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -71,7 +71,7 @@ func CheckPasswordHash(password, hash string) bool {
 
 // GetUserIdByUsername check if a user exists in database by given username
 func GetUserIdByUsername(username string) (int, error) {
-	statement, err := database.Db.Prepare("select ID from Users WHERE Username = ?")
+	statement, err := database.Db.Prepare("select id from users WHERE Username = ?")
 	if err != nil {
 		log.Fatal(err)
 	}

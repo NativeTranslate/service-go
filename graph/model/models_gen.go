@@ -36,12 +36,18 @@ type Stats struct {
 }
 
 type User struct {
-	ID       string `json:"id"`
-	Name     string `json:"name"`
-	Password string `json:"password"`
+	ID      string    `json:"id"`
+	Name    string    `json:"name"`
+	Role    *UserRole `json:"role"`
+	Country *string   `json:"country,omitempty"`
 }
 
 type UserInput struct {
 	Name     string `json:"name"`
 	Password string `json:"password"`
+}
+
+type UserRole struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
 }
